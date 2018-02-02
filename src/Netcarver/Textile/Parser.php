@@ -1586,6 +1586,7 @@ class Parser
                     'h[1-6]',
                     'fn'.$this->regex_snippets['digit'].'+',
                     '###',
+                    'exer', //KRM
                 );
                 $text = $this->blocks($text);
                 $text = $this->placeNoteLists($text);
@@ -2900,6 +2901,11 @@ class Parser
             $o2 = "\t<p".$this->parseAttribs($att, '', 0).">";
             $c2 = "</p>";
             $c1 = "\n</blockquote>";
+        } elseif ($tag == 'exer') { //KRM
+            $o1 = "<pre$atts><code>";
+            $c1 = "</code></pre>";
+            $content = 'DOG ' . $content . ' DOG';
+            $content = $this->shelve($this->rEncodeHTML($content));
         } elseif ($tag == 'bc') {
             $o1 = "<pre$atts><code>";
             $c1 = "</code></pre>";
